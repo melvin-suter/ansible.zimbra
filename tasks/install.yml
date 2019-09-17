@@ -6,8 +6,8 @@
     path: /etc/hosts
 
 - name: Install Packages
-  yum:
-    name: "{{ zimbra_packages }}"
+  pip:
+    name: "{{ zimbra_pip_packages }}"
 
 - name: Download Zimbra
   get_url:
