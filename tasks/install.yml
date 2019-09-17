@@ -36,6 +36,7 @@
 - name: Start install-script
   expect:
     command: "{{ zimbra_tmp_path }}/zcs/install.sh"
+    chdir: "{{ zimbra_tmp_path }}"
     responses:
       'Do you agree with the terms of the software license agreement': y
       "Use Zimbra's package repository": y
@@ -51,7 +52,7 @@
       'Install zimbra-proxy': "{{ 'y' if zimbra_install_proxy else 'n' }}"
       'The system will be modified.': y
       'Port conflicts detected! - Press Enter/Return key to continue': ''
-      # LDAP Setup
+      # Skip missing settings
       'Address unconfigured ': q
       'Quit without applying changes?': y
 
