@@ -37,7 +37,7 @@
   expect:
     command: "./install.sh"
     chdir: "{{ zimbra_tmp_path }}/zcs"
-    timeout: "{{ zimbra_timeout }}"
+    timeout: null 
     responses:
       'Do you agree with the terms of the software license agreement': y
       "Use Zimbra's package repository": y
