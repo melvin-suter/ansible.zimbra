@@ -35,8 +35,8 @@
 
 - name: Start install-script
   expect:
-    command: "{{ zimbra_tmp_path }}/zcs/install.sh"
-    chdir: "{{ zimbra_tmp_path }}"
+    command: "./install.sh"
+    chdir: "{{ zimbra_tmp_path }}/zcs"
     responses:
       'Do you agree with the terms of the software license agreement': y
       "Use Zimbra's package repository": y
