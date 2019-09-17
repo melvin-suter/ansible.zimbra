@@ -22,11 +22,53 @@
     remote_src: yes
 
 - name: Rename zcs-folder
-  command: mv {{ zimbra_tmp_path }}/zcs* {{ zimbra_tmp_path }}/zcs
+  shell: mv {{ zimbra_tmp_path }}/zcs* {{ zimbra_tmp_path }}/zcs
 
-#- name: Start install-script
-#  expect:
-#    command: "{{ zimbra_tmp_path }}/zcs/install.sh"
-#    responses:
-#      'Do you agree with the terms of the software license agreement(.*)': y
+- name: Start install-script
+  expect:
+    command: "{{ zimbra_tmp_path }}/zcs/install.sh"
+    responses:
+      'Do you agree with the terms of the software license agreement': y
+      'Use Zimbra\'s package repository': y
+      'Install zimbra-ldap': "{{ 'y' if zimbra_install_ldap else 'n' }}"
+      'Install zimbra-logger': "{{ 'y' if zimbra_install_logger else 'n' }}"
+      'Install zimbra-mta': "{{ 'y' if zimbra_install_mta else 'n' }}"
+      'Install zimbra-dnscache': "{{ 'y' if zimbra_install_dnscache else 'n' }}"
+      'Install zimbra-snmp': "{{ 'y' if zimbra_install_snmp else 'n' }}"
+      'Install zimbra-store': "{{ 'y' if zimbra_install_store else 'n' }}"
+      'Install zimbra-apache': "{{ 'y' if zimbra_install_apache else 'n' }}"
+      'Install zimbra-spell': "{{ 'y' if zimbra_install_spell else 'n' }}"
+      'Install zimbra-memcached': "{{ 'y' if zimbra_install_memcached else 'n' }}"
+      'Install zimbra-proxy': "{{ 'y' if zimbra_install_proxy else 'n' }}"
+      'The system will be modified.': y
+      'Port conflicts detected! - Press Enter/Return key to continue': ''
+      # LDAP Setup
+      'Address unconfigured ': q
+      'Quit without applying changes?': y
+
+- name: Open Firewall Ports (SMTP & Web)
+  firewalld:
+    port: "{{ item }}"
+    state: enabled
+    permanent: yes
+    immediate: yes
+  with_items: "{{ zimbra_ports }}"
+
+- name: Open Firewall Ports (IMAP)
+  firewalld:
+    port: "{{ item }}"
+    state: enabled
+    permanent: yes
+    immediate: yes
+  with_items: "{{ zimbra_imap_ports }}"
+  when: zimbra_openports_imap == true
+
+- name: Open Firewall Ports (POP3)
+  firewalld:
+    port: "{{ item }}"
+    state: enabled
+    permanent: yes
+    immediate: yes
+  with_items: "{{ zimbra_pop3_ports }}"
+  when: zimbra_openports_pop3 == true
 

@@ -1,3 +1,17 @@
 ---
 zimbra_public_ip: 1.2.3.4
 zimbra_public_fqdn: mail.example.org
+
+zimbra_install_ldap: yes
+zimbra_install_logger: yes
+zimbra_install_mta: yes
+zimbra_install_dnscache: yes
+zimbra_install_snmp: yes
+zimbra_install_store: no
+zimbra_install_apache: yes
+zimbra_install_spell: yes
+zimbra_install_memcached: yes
+zimbra_install_proxy: yes
+
+zimbra_openports_imap: yes
+zimbra_openports_pop3: yes

@@ -2,3 +2,19 @@
 zimbra_download_url: https://files.zimbra.com/downloads/8.8.15_GA/zcs-8.8.15_GA_3829.RHEL7_64.20190718141144.tgz
 zimbra_archive_path: /tmp/zimbra.tar.gz
 zimbra_tmp_path: /tmp/zimbra
+
+zimbra_ports:
+- 25/tcp
+- 80/tcp
+- 443/tcp
+- 465/tcp
+- 587/tcp
+
+zimbra_imap_ports:
+- 993/tcp
+- 143/tcp
+
+zimbra_pop3_ports:
+- 110/tcp
+- 995/tcp
+
