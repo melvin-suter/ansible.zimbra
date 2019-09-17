@@ -1,2 +1,3 @@
 ---
-
+zimbra_public_ip: 1.2.3.4
+zimbra_public_fqdn: mail.example.org
