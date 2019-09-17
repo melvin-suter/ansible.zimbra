@@ -5,6 +5,10 @@
     line: "{{ zimbra_public_ip }} {{ zimbra_public_fqdn }}"
     path: /etc/hosts
 
+- name: Install Packages:
+  yum:
+    name: "{{ zimbra_packages }}"
+
 - name: Download Zimbra
   get_url:
     url: "{{ zimbra_download_url }}"

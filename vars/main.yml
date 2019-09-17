@@ -3,6 +3,9 @@ zimbra_download_url: https://files.zimbra.com/downloads/8.8.15_GA/zcs-8.8.15_GA_
 zimbra_archive_path: /tmp/zimbra.tar.gz
 zimbra_tmp_path: /tmp/zimbra
 
+zimbra_packages:
+- pexpect
+
 zimbra_ports:
 - 25/tcp
 - 80/tcp
