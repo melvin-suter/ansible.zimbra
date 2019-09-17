@@ -38,6 +38,7 @@
     command: "./install.sh"
     chdir: "{{ zimbra_tmp_path }}/zcs"
     timeout: null 
+    echo: yes
     responses:
       'Do you agree with the terms of the software license agreement': y
       "Use Zimbra's package repository": y
