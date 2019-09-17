@@ -24,8 +24,9 @@
 - name: Rename zcs-folder
   command: mv {{ zimbra_tmp_path }}/zcs* {{ zimbra_tmp_path }}/zcs
 
- expect:
-    command: "{{ zimbra_tmp_path }}/zcs/install.sh"
-    responses:
-      'Do you agree with the terms of the software license agreement(.*)': y
+#- name: Start install-script
+#  expect:
+#    command: "{{ zimbra_tmp_path }}/zcs/install.sh"
+#    responses:
+#      'Do you agree with the terms of the software license agreement(.*)': y
 
