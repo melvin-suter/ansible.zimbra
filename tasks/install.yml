@@ -29,7 +29,7 @@
     command: "{{ zimbra_tmp_path }}/zcs/install.sh"
     responses:
       'Do you agree with the terms of the software license agreement': y
-      'Use Zimbra\'s package repository': y
+      "Use Zimbra's package repository": y
       'Install zimbra-ldap': "{{ 'y' if zimbra_install_ldap else 'n' }}"
       'Install zimbra-logger': "{{ 'y' if zimbra_install_logger else 'n' }}"
       'Install zimbra-mta': "{{ 'y' if zimbra_install_mta else 'n' }}"
