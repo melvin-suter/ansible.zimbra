@@ -4,6 +4,11 @@
     url: "{{ zimbra_download_url }}"
     dest: "{{ zimbra_archive_path }}"
 
+- name: Create tmp dir
+  file:
+    path: "{{ zimbra_tmp_path }}"
+    state: directory
+
 - name: Extract Zimbra
   unarchive:
     src: "{{ zimbra_archive_path }}"
