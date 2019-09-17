@@ -54,7 +54,8 @@
       'Install zimbra-proxy': "{{ 'y' if zimbra_install_proxy else 'n' }}"
       'The system will be modified.': y
       'Port conflicts detected! - Press Enter/Return key to continue': ''
-      # Skip missing settings
+      # Skip missing settings & errors
+      'Do you wish to upgrade?': y
       'Address unconfigured ': q
       'Quit without applying changes?': y
 
