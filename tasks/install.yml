@@ -26,7 +26,7 @@
     remote_src: yes
 
 - name: Rename zcs-folder
-  shell: mv {{ zimbra_tmp_path }}/zcs* {{ zimbra_tmp_path }}/zcs
+  shell: test -d {{ zimbra_tmp_path }}/zcs || mv {{ zimbra_tmp_path }}/zcs* {{ zimbra_tmp_path }}/zcs
 
 - name: Start install-script
   expect:
