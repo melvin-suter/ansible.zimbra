@@ -8,3 +8,4 @@
   unarchive:
     src: "{{ zimbra_archive_path }}"
     dest: "{{ zimbra_tmp_path }}"
+    remote_src: yes
