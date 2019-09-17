@@ -1,0 +1,10 @@
+---
+- name: Download Zimbra
+  get_url:
+    url: "{{ zimbra_download_url }}"
+    dest: "{{ zimbra_archive_path }}"
+
+- name: Extract Zimbra
+  unarchive:
+    src: "{{ zimbra_archive_path }}"
+    dest: "{{ zimbra_tmp_path }}"
