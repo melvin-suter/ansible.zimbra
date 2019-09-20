@@ -54,9 +54,15 @@
 - name: FileNotFound Fix
   file:
     state: directory
-    path: /opt/zimbra/common/lib/jvm/java/jre/lib/security
+    path: "{{ item }}"
     owner: zimbra
     group: zimbra
+  with_items:
+  - /opt/zimbra/common/lib/jvm/java/jre/lib/security 
+  - /opt/zimbra/mailboxd/etc
+
+- name: LDAP Master
+  shell: su - zimbra -c 'zmlocalconfig -e ldap_is_master=true'
  
 - name: Configuring Zimbra
   command: ./zmsetup.pl -c {{ zimbra_tmp_path }}/install_config
