@@ -15,7 +15,7 @@
     path: /etc/hosts
 
 - name: Add hosts file line
-  command: echo "$(hostname -I) $(hostname)" >> /etc/hosts
+  shell: echo "$(hostname -I) $(hostname)" >> /etc/hosts
 
 - name: Download Zimbra
   get_url:
