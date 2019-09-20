@@ -48,19 +48,11 @@
   args:
     chdir: "{{ zimbra_tmp_path }}/zcs"
 
-- name: Symlink fix dir
+- name: FileNotFound Fix
   file:
     state: directory
-    path: /opt/zimbra/common/lib/jvm/java/jre/lib
+    path: /opt/zimbra/common/lib/jvm/java/jre/lib/security
  
-- name: Symlink fix
-  file:
-    state: link
-    src: /opt/zimbra/common/lib/jvm/java/lib/security
-    dest: /opt/zimbra/common/lib/jvm/java/jre/lib/security
-    owner: zimbra
-    group: zimbra
-
 - name: Configuring Zimbra
   command: ./zmsetup.pl -c {{ zimbra_tmp_path }}/install_config
   args:
