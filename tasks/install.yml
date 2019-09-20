@@ -52,6 +52,8 @@
   file:
     state: directory
     path: /opt/zimbra/common/lib/jvm/java/jre/lib/security
+    owner: zimbra
+    group: zimbra
  
 - name: Configuring Zimbra
   command: ./zmsetup.pl -c {{ zimbra_tmp_path }}/install_config
