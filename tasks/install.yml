@@ -9,6 +9,9 @@
   yum:
     name: net-tools
 
+- name: Add hosts file line
+  command: echo "$(hostname -I) $(hostname)" >> /etc/hosts
+
 - name: Set hosts file
   lineinfile:
     line: "{{ zimbra_public_ip }} {{ zimbra_public_fqdn }}"
