@@ -1,5 +1,10 @@
 ---
 
+- name: uninstall postfix
+  yum:
+    name: postfix
+    state: absent
+
 - name: Set hosts file
   lineinfile:
     line: "{{ zimbra_public_ip }} {{ zimbra_public_fqdn }}"

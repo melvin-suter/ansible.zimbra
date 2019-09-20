@@ -7,7 +7,7 @@ zimbra_timezone: Europe/Zurich
 zimbra_primary_domain: example.org
 zimbra_admin_password: ChangeMe
 
-zimbra_ldap_host: 127.0.0.1
+zimbra_ldap_host: "{{ zimbra_public_fqdn }}"
 zimbra_ldap_port: 389
 zimbra_ldap_postpass: "{{ zimbra_admin_password }}"
 zimbra_ldap_rootpass: "{{ zimbra_admin_password }}"
@@ -32,7 +32,7 @@ zimbra_install_ldap: yes
 zimbra_install_logger: yes
 zimbra_install_mta: yes
 zimbra_install_dnscache: yes
-zimbra_install_snmp: yes
+zimbra_install_snmp: no
 zimbra_install_store: no
 zimbra_install_apache: yes
 zimbra_install_spell: yes
