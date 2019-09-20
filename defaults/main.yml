@@ -16,6 +16,8 @@ zimbra_ldap_amavispass: "{{ zimbra_admin_password }}"
 zimbra_ldap_bes_searcher_pass: "{{ zimbra_admin_password }}"
 zimbra_ldap_nginxpass: "{{ zimbra_admin_password }}"
 zimbra_mailboxd_pass: "{{ zimbra_admin_password }}"
+zimbra_ldap_dit_basedn: "cn=zimbra"
+
 zimbra_ldap_userdn: "uid=zimbra,cn=admins,cn=zimbra"
 
 zimbra_smtp_dest: "admin@{{ zimbra_primary_domain }}"
