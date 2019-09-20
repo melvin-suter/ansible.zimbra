@@ -35,18 +35,18 @@
 
 - name: Generate answer_key-file
   template:
-    dest: {{ zimbra_tmp_path }}/answer_key_file
+    dest: "{{ zimbra_tmp_path }}/answer_key_file"
     src: templates/answer_key_file.j2
 
 - name: Generate install_config
   template:
-    dest: {{ zimbra_tmp_path }}/install_config
+    dest: "{{ zimbra_tmp_path }}/install_config"
     src: templates/install_config.j2
 
 - name: Installing Zimbra
   shell: ./install.sh -s < {{ zimbra_tmp_path }}/answer_key_file
   args:
-    chdir: {{ zimbra_tmp_path }}/zcs
+    chdir: "{{ zimbra_tmp_path }}/zcs"
 
 - name: Configuring Zimbra
   command: ./zmsetup.pl -c {{ zimbra_tmp_path }}/install_config
