@@ -1,3 +1,11 @@
 ---
 
+- name: Check zimbra-installation
+  stat:
+    path: /opt/zimbra 
+  register: zimbra_folder
+
 - import_tasks: install.yml
+  when: zimbra_folder.stat.exists == false
+
+- import_tasks: motd.yml
