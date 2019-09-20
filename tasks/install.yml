@@ -79,3 +79,7 @@
   with_items: "{{ zimbra_pop3_ports }}"
   when: zimbra_openports_pop3 == true
 
+- name: Start Server
+  command: zmcontrol restart
+  become: yes
+  become_user: zimbra
