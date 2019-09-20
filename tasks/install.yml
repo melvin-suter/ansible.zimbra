@@ -33,31 +33,25 @@
 - name: Rename zcs-folder
   shell: test -d {{ zimbra_tmp_path }}/zcs || mv {{ zimbra_tmp_path }}/zcs* {{ zimbra_tmp_path }}/zcs
 
-- name: Start install-script
-  expect:
-    command: "./install.sh"
-    chdir: "{{ zimbra_tmp_path }}/zcs"
-    timeout: 900
-    echo: yes
-    responses:
-      'Do you agree with the terms of the software license agreement': y
-      "Use Zimbra's package repository": y
-      'Install zimbra-ldap': "{{ 'y' if zimbra_install_ldap else 'n' }}"
-      'Install zimbra-logger': "{{ 'y' if zimbra_install_logger else 'n' }}"
-      'Install zimbra-mta': "{{ 'y' if zimbra_install_mta else 'n' }}"
-      'Install zimbra-dnscache': "{{ 'y' if zimbra_install_dnscache else 'n' }}"
-      'Install zimbra-snmp': "{{ 'y' if zimbra_install_snmp else 'n' }}"
-      'Install zimbra-store': "{{ 'y' if zimbra_install_store else 'n' }}"
-      'Install zimbra-apache': "{{ 'y' if zimbra_install_apache else 'n' }}"
-      'Install zimbra-spell': "{{ 'y' if zimbra_install_spell else 'n' }}"
-      'Install zimbra-memcached': "{{ 'y' if zimbra_install_memcached else 'n' }}"
-      'Install zimbra-proxy': "{{ 'y' if zimbra_install_proxy else 'n' }}"
-      'The system will be modified.': y
-      'Port conflicts detected! - Press Enter/Return key to continue': ''
-      # Skip missing settings & errors
-      'Do you wish to upgrade?': y
-      'Address unconfigured ': q
-      'Quit without applying changes?': y
+- name: Generate answer_key-file
+  template:
+    dest: {{ zimbra_tmp_path }}/answer_key_file
+    src: templates/answer_key_file.j2
+
+- name: Generate install_config
+  template:
+    dest: {{ zimbra_tmp_path }}/install_config
+    src: templates/install_config.j2
+
+- name: Installing Zimbra
+  shell: ./install.sh -s < {{ zimbra_tmp_path }}/answer_key_file
+  args:
+    chdir: {{ zimbra_tmp_path }}/zcs
+
+- name: Configuring Zimbra
+  command: ./zmsetup.pl -c {{ zimbra_tmp_path }}/install_config
+  args:
+    chdir: /opt/zimbra/libexec/
 
 - name: Open Firewall Ports (SMTP & Web)
   firewalld:

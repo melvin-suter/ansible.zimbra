@@ -1,6 +1,29 @@
 ---
 zimbra_public_ip: 1.2.3.4
 zimbra_public_fqdn: mail.example.org
+zimbra_mynetwork: 192.168.1.0/24
+
+zimbra_primary_domain: example.org
+zimbra_admin_password: ChangeMe
+
+zimbra_ldap_host: 127.0.0.1
+zimbra_ldap_port: 389
+zimbra_ldap_postpass: "{{ zimbra_admin_password }}"
+zimbra_ldap_rootpass: "{{ zimbra_admin_password }}"
+zimbra_ldap_adminpass: "{{ zimbra_admin_password }}"
+zimbra_ldap_preppass: "{{ zimbra_admin_password }}"
+zimbra_ldap_amavispass: "{{ zimbra_admin_password }}"
+zimbra_ldap_bes_searcher_pass: "{{ zimbra_admin_password }}"
+zimbra_ldap_nginxpass: "{{ zimbra_admin_password }}"
+zimbra_mailboxd_pass: "{{ zimbra_admin_password }}"
+zimbra_ldap_userdn: "uid=zimbra,cn=admins,cn=zimbra"
+
+zimbra_smtp_dest: "admin@{{ zimbra_primary_domain }}"
+zimbra_smtp_src: "admin@{{ zimbra_primary_domain }}"
+zimbra_smtp_host: "{{ zimbra_public_fqdn }}"
+zimbra_smtp_notify: "yes"
+
+zimbra_spell_url: "http://{{ zimbra_public_fqdn }}:7780/aspell.php"
 
 zimbra_install_ldap: yes
 zimbra_install_logger: yes
