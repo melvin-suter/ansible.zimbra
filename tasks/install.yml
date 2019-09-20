@@ -4,6 +4,10 @@
   yum:
     name: postfix
     state: absent
+ 
+- name: Install net-tools 
+  yum:
+    name: net-tools
 
 - name: Set hosts file
   lineinfile:
@@ -43,6 +47,14 @@
   shell: ./install.sh -s < {{ zimbra_tmp_path }}/answer_key_file
   args:
     chdir: "{{ zimbra_tmp_path }}/zcs"
+
+- name: Symlink fix
+  file:
+    state: link
+    src: /opt/zimbra/common/lib/jvm/java/lib/security
+    dest: /opt/zimbra/common/lib/jvm/java/jre/lib/security
+    owner: zimbra
+    group: zimbra
 
 - name: Configuring Zimbra
   command: ./zmsetup.pl -c {{ zimbra_tmp_path }}/install_config
